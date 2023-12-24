@@ -33,3 +33,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scripts
+/scripts/static-paths-page.js
+/scripts/static-paths-category.js

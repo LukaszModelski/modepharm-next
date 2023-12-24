@@ -1,8 +1,13 @@
 import { useGlobalContext } from '@/contexts/global/globalContext'
+import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import Link from 'next/link'
 
-export default function Home() {
-  const { 'home-page': homePage, menu } = useGlobalContext()
+interface HomeProps {
+  modepharmData: ModepharmType
+}
+
+export default function Home({ modepharmData }: HomeProps) {
+  const { 'home-page': homePage, menu } = modepharmData
 
   return (
     <div id="page-home">
@@ -37,13 +42,21 @@ export default function Home() {
       </section>
     </div>
   )
+}
 
-  return (
-    <>
-      <h1>home page</h1>
-      <Link href="/test">Test1</Link>
-      <hr />
-      <Link href="/test1">Test2</Link>
-    </>
-  )
+export const getStaticProps = async () => {
+  let modepharmData: ModepharmType
+  let validatedData: ModepharmType | null = null
+
+  try {
+    const res = await fetch('https://www.modepharm.pl/cms/wp-json/modepharm/all')
+    modepharmData = await res.json()
+    validatedData = await validateResponseZod(modepharmData)
+  } catch (error) {
+    console.error(error)
+  }
+
+  return {
+    props: { modepharmData: validatedData }
+  }
 }
