@@ -1,5 +1,7 @@
 import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
+import { stripHtmlfromTags } from '@/helpers/stripHtml'
 
 interface PageProps {
   modepharmData: ModepharmType
@@ -15,13 +17,20 @@ export default function Page({ modepharmData }: PageProps) {
   const page = pagePath && pages[pagePath]
 
   if (!page) {
-    return <></>
+    // TODO: redirect to 404
+    return <>Should be 404 page</>
   }
+
+  const { post_title: pageTitle, post_content: pageContent } = page
 
   return (
     <>
-      <h1>{page['post_title']}</h1>
-      <p>{page['post_content']}</p>
+      <Head>
+        <title>{pageTitle}</title>
+        {pageContent && <meta name="description" content={stripHtmlfromTags(pageContent)}></meta>}
+      </Head>
+      <h1>{pageTitle}</h1>
+      <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: pageContent }}></div>
     </>
   )
 }

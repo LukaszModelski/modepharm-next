@@ -1,5 +1,6 @@
-import { useGlobalContext } from '@/contexts/global/globalContext'
+import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { ModepharmType, validateResponseZod } from '@/helpers/zod'
+import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -17,13 +18,20 @@ export default function CategoryPage({ modepharmData }: CategoryPageProps) {
   const subMenu = typeof category === 'string' && menu[category]['child-pages']
 
   if (!categoryPage) {
+    // TODO: redirect to 404
     return <h1>Should be 404 page</h1>
   }
 
+  const { post_title: categoryTitle, post_content: categoryContent } = categoryPage
+
   return (
     <>
-      <h1>{categoryPage['post_title']}</h1>
-      <p>{categoryPage['post_content']}</p>
+      <Head>
+        <title>{categoryTitle}</title>
+        {categoryContent && <meta name="description" content={stripHtmlfromTags(categoryContent)}></meta>}
+      </Head>
+      <h1>{categoryTitle}</h1>
+      <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: categoryContent }}></div>
       {subMenu &&
         Object.values(subMenu).map((item) => (
           <Link key={item.title} href={`/${item.full_slug}`}>

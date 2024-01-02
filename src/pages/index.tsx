@@ -1,6 +1,7 @@
-import { useGlobalContext } from '@/contexts/global/globalContext'
+import Head from 'next/head'
 import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import Link from 'next/link'
+import { stripHtmlfromTags } from '@/helpers/stripHtml'
 
 interface HomeProps {
   modepharmData: ModepharmType
@@ -8,14 +9,19 @@ interface HomeProps {
 
 export default function Home({ modepharmData }: HomeProps) {
   const { 'home-page': homePage, menu } = modepharmData
+  const { post_title: pageTitle, post_content: pageContent } = homePage
 
   return (
     <div id="page-home">
-      <h1>{homePage['post_title']}</h1>
+      <Head>
+        <title>{pageTitle}</title>
+        {pageContent && <meta name="description" content={stripHtmlfromTags(pageContent)}></meta>}
+      </Head>
+      <h1>{pageTitle}</h1>
       <div className="breadcrumbs">
         <span className="breadcrumb-item">Strona główna /</span>
       </div>
-      <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: homePage['post_content'] }}></div>
+      <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: pageContent }}></div>
       <section className="grid-tiles">
         {Object.values(menu).map((item) => (
           <Link key={item.title} href={`/${item.full_slug}`}>
