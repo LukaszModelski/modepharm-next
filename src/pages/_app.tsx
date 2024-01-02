@@ -5,6 +5,7 @@ import { Layout } from '@/layouts/Layout'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '@/styles/theme'
 import { GlobalStyles } from '@/styles/globalStyles'
+import { GlobalStylesFonts } from '@/styles/globalStylesFonts'
 
 type AppCustomProps = {
   modepharm?: ModepharmType
@@ -12,13 +13,12 @@ type AppCustomProps = {
 
 export default function MyApp({ Component, pageProps, modepharm }: AppProps & AppCustomProps) {
   return (
-    // <GlobalContextProvider value={modepharm}>
     <ThemeProvider theme={theme}>
+      <GlobalStylesFonts />
       <GlobalStyles />
       <Layout>
         <Component {...pageProps} />
       </Layout>
     </ThemeProvider>
-    // </GlobalContextProvider>
   )
 }
