@@ -4,7 +4,12 @@ jobs:
   job-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Print greeting
-        run: echo "Hello World!"
-      - name: Print goodbye
-        run: echo "BYeee"
+      - name: Get code
+        uses: actions/checkout@v3
+    - name: Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        dry-run: true
