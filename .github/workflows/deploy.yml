@@ -1,4 +1,4 @@
-name: deploy
+name: deploy-dry
 on: workflow_dispatch
 jobs:
   job-deploy:
