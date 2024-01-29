@@ -2,6 +2,7 @@ import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { stripHtmlfromTags } from '@/helpers/stripHtml'
+import { Menu } from '@/components/Menu/Menu'
 
 interface PageProps {
   modepharmData: ModepharmType
@@ -29,6 +30,7 @@ export default function Page({ modepharmData }: PageProps) {
         <title>{pageTitle}</title>
         {pageContent && <meta name="description" content={stripHtmlfromTags(pageContent)}></meta>}
       </Head>
+      <Menu data={modepharmData.menu} />
       <h1>{pageTitle}</h1>
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: pageContent }}></div>
     </>

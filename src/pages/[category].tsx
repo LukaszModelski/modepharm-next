@@ -3,6 +3,7 @@ import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Menu } from '@/components/Menu/Menu'
 
 interface CategoryPageProps {
   modepharmData: ModepharmType
@@ -30,6 +31,7 @@ export default function CategoryPage({ modepharmData }: CategoryPageProps) {
         <title>{categoryTitle}</title>
         {categoryContent && <meta name="description" content={stripHtmlfromTags(categoryContent)}></meta>}
       </Head>
+      <Menu data={modepharmData.menu} />
       <h1>{categoryTitle}</h1>
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: categoryContent }}></div>
       {subMenu &&

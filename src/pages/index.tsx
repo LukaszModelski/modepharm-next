@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import Link from 'next/link'
 import { stripHtmlfromTags } from '@/helpers/stripHtml'
+import { Menu } from '@/components/Menu/Menu'
 
 interface HomeProps {
   modepharmData: ModepharmType
@@ -17,6 +18,7 @@ export default function Home({ modepharmData }: HomeProps) {
         <title>{pageTitle}</title>
         {pageContent && <meta name="description" content={stripHtmlfromTags(pageContent)}></meta>}
       </Head>
+      <Menu data={modepharmData.menu} />
       <h1>{pageTitle}</h1>
       <div className="breadcrumbs">
         <span className="breadcrumb-item">Strona główna</span>
