@@ -19,7 +19,7 @@ export default function Home({ modepharmData }: HomeProps) {
       </Head>
       <h1>{pageTitle}</h1>
       <div className="breadcrumbs">
-        <span className="breadcrumb-item">Strona główna /</span>
+        <span className="breadcrumb-item">Strona główna</span>
       </div>
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: pageContent }}></div>
       <section className="grid-tiles">

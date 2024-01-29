@@ -27,16 +27,21 @@ export const GlobalStyles = createGlobalStyle`
 
   // typography
   body {
-    font-family: 'Source Sans Pro';
+    font-family: '__Source_Sans_3_eb3c34';
     box-sizing: border-box;
-    font-weight: 300;    
+    font-weight: 300;
+    position: absolute;
+    overflow-x: hidden;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+
   }
 
   h1 {
     margin-top: 0;
     margin-bottom: 30px;
     font-size: 2rem;
-    font-family: 'Source Sans Pro';
     font-weight: 700;
 
     ${(props) =>
