@@ -16,5 +16,5 @@ jobs:
           ftp_host: ${{ secrets.FTP_SERVER }}
           ftp_username: ${{ secrets.FTP_USER }}
           ftp_password: ${{ secrets.FTP_PASSWORD }}
-          local_source_dir: 'public'
+          local_source_dir: '.'
           dist_target_dir: 'public_html'
