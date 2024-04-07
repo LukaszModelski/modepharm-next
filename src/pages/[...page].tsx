@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { Menu } from '@/components/Menu/Menu'
+import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 
 interface PageProps {
   modepharmData: ModepharmType
@@ -22,7 +23,10 @@ export default function Page({ modepharmData }: PageProps) {
     return <>Should be 404 page</>
   }
 
+  const categoryPath = pageQuery[0]
+  const { post_title: categoryTitle } = pages[categoryPath]
   const { post_title: pageTitle, post_content: pageContent } = page
+  const breadcrumbsItems = [{ label: 'Strona Główna', link: '/' }, { label: categoryTitle, link: `/${categoryPath}` }, { label: pageTitle }]
 
   return (
     <>
@@ -32,6 +36,7 @@ export default function Page({ modepharmData }: PageProps) {
       </Head>
       <Menu data={modepharmData.menu} />
       <h1>{pageTitle}</h1>
+      <Breadcrumbs items={breadcrumbsItems} />
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: pageContent }}></div>
     </>
   )

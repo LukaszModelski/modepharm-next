@@ -3,6 +3,7 @@ import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import Link from 'next/link'
 import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { Menu } from '@/components/Menu/Menu'
+import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 
 interface HomeProps {
   modepharmData: ModepharmType
@@ -11,6 +12,7 @@ interface HomeProps {
 export default function Home({ modepharmData }: HomeProps) {
   const { 'home-page': homePage, menu } = modepharmData
   const { post_title: pageTitle, post_content: pageContent } = homePage
+  const breadcrumbsItems = [{ label: 'Strona Główna' }]
 
   return (
     <div id="page-home">
@@ -20,9 +22,7 @@ export default function Home({ modepharmData }: HomeProps) {
       </Head>
       <Menu data={modepharmData.menu} />
       <h1>{pageTitle}</h1>
-      <div className="breadcrumbs">
-        <span className="breadcrumb-item">Strona główna</span>
-      </div>
+      <Breadcrumbs items={breadcrumbsItems} />
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: pageContent }}></div>
       <section className="grid-tiles">
         {Object.values(menu).map((item) => (

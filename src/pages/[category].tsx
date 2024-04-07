@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Menu } from '@/components/Menu/Menu'
+import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 
 interface CategoryPageProps {
   modepharmData: ModepharmType
@@ -24,6 +25,7 @@ export default function CategoryPage({ modepharmData }: CategoryPageProps) {
   }
 
   const { post_title: categoryTitle, post_content: categoryContent } = categoryPage
+  const breadcrumbsItems = [{ label: 'Strona Główna', link: '/' }, { label: categoryTitle }]
 
   return (
     <>
@@ -33,6 +35,7 @@ export default function CategoryPage({ modepharmData }: CategoryPageProps) {
       </Head>
       <Menu data={modepharmData.menu} />
       <h1>{categoryTitle}</h1>
+      <Breadcrumbs items={breadcrumbsItems} />
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: categoryContent }}></div>
       {subMenu &&
         Object.values(subMenu).map((item) => (
