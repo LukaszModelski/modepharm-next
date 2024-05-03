@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ModepharmType } from '@/helpers/zod'
+import { zIndexes } from '@/styles/zIndexes'
 
 interface MenuProps {
   data: ModepharmType['menu']
@@ -56,7 +57,7 @@ export const Menu = ({ data }: MenuProps) => {
 
 const NavContainer = styled.div<{ $isopen: boolean }>`
   position: fixed;
-  z-index: 10;
+  z-index: ${zIndexes.menu};
   top: 0;
   right: ${(props) => (props.$isopen ? '0' : '-300')}px;
   width: 300px;

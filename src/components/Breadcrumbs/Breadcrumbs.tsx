@@ -13,11 +13,13 @@ export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
     <StyledBreadcrumbs>
       {items.map((item, index) =>
         item?.link ? (
-          <Link href={item.link}>
-            <StyledSpan first={index === 0}>{item.label}</StyledSpan>
+          <Link href={item.link} key={item.label}>
+            <StyledSpan $first={index === 0}>{item.label}</StyledSpan>
           </Link>
         ) : (
-          <StyledSpan first={index === 0}>{item.label}</StyledSpan>
+          <StyledSpan $first={index === 0} key={item.label}>
+            {item.label}
+          </StyledSpan>
         )
       )}
     </StyledBreadcrumbs>
@@ -33,7 +35,7 @@ const StyledBreadcrumbs = styled.div`
   border-bottom: 1px solid #d3d3d3;
 `
 
-const StyledSpan = styled.span<{ first: boolean }>`
+const StyledSpan = styled.span<{ $first: boolean }>`
   display: block;
   padding: 5px 10px;
   font-size: 1.15rem;
@@ -45,7 +47,7 @@ const StyledSpan = styled.span<{ first: boolean }>`
   }
 
   ${(props) =>
-    props.first &&
+    props.$first &&
     `
       &:before {
         content: none;
