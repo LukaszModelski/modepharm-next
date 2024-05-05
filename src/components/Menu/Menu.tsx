@@ -43,7 +43,9 @@ export const Menu = ({ data }: MenuProps) => {
 
   return (
     <NavContainer $isopen={isOpen}>
-      <IconContainerDesktop onClick={() => setIsOpen((prev) => !prev)}>{isOpen ? <IconCloseDesktop /> : <IconHamburger />}</IconContainerDesktop>
+      <IconContainerDesktop onClick={() => setIsOpen((prev) => !prev)}>
+        {isOpen ? <IconCloseDesktop /> : <IconHamburger />}
+      </IconContainerDesktop>
       <IconContainerMobile>{isOpen && <IconClosedMobile onClick={() => setIsOpen(false)} />}</IconContainerMobile>
       <Nav>
         <StyledNavLinkPrimary href={'/'} $noBorder={true}>

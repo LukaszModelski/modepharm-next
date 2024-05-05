@@ -26,7 +26,11 @@ export default function Page({ modepharmData }: PageProps) {
   const categoryPath = pageQuery[0]
   const { post_title: categoryTitle } = pages[categoryPath]
   const { post_title: pageTitle, post_content: pageContent } = page
-  const breadcrumbsItems = [{ label: 'Strona Główna', link: '/' }, { label: categoryTitle, link: `/${categoryPath}` }, { label: pageTitle }]
+  const breadcrumbsItems = [
+    { label: 'Strona Główna', link: '/' },
+    { label: categoryTitle, link: `/${categoryPath}` },
+    { label: pageTitle }
+  ]
 
   return (
     <>
@@ -60,12 +64,20 @@ export const getStaticPaths = async () => {
       { params: { page: ['walidacja-i-kwalifikacje-w-przemysle', 'kwalifikacja-pomieszczen-czystych'] } },
       { params: { page: ['walidacja-i-kwalifikacje-w-przemysle', 'kwalifikacje-urzadzen-i-systemow-inzynieryjnych'] } },
       { params: { page: ['walidacja-i-kwalifikacje-w-przemysle', 'waidacja-systemow-skomputeryzowanych'] } },
-      { params: { page: ['walidacja-i-kwalifikacje-w-przemysle', 'walidacja-czyszczenia-srodki-czyszczace-diversey'] } },
+      {
+        params: { page: ['walidacja-i-kwalifikacje-w-przemysle', 'walidacja-czyszczenia-srodki-czyszczace-diversey'] }
+      },
       { params: { page: ['walidacja-i-kwalifikacje-w-przemysle', 'walidacja-procesow-wytwarzania'] } },
       { params: { page: ['walidacja-systemow-skomputeryzowanych', 'walidacja-arkuszy-kalkulacyjnych'] } },
       { params: { page: ['walidacja-systemow-skomputeryzowanych', 'walidacja-systemow-laboratoryjnych'] } },
-      { params: { page: ['walidacja-systemow-skomputeryzowanych', 'walidacja-systemow-moitorujaceych-parametry-klimatyczne'] } },
-      { params: { page: ['walidacja-systemow-skomputeryzowanych', 'walidacja-systemow-skomputeryzowanych-klasy-erp'] } },
+      {
+        params: {
+          page: ['walidacja-systemow-skomputeryzowanych', 'walidacja-systemow-moitorujaceych-parametry-klimatyczne']
+        }
+      },
+      {
+        params: { page: ['walidacja-systemow-skomputeryzowanych', 'walidacja-systemow-skomputeryzowanych-klasy-erp'] }
+      },
       { params: { page: ['walidacja-systemow-skomputeryzowanych', 'walidacja-systemow-zarzadzania-hurtownia'] } }
     ],
     fallback: false

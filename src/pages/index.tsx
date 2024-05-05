@@ -13,7 +13,12 @@ export default function Home({ modepharmData }: HomeProps) {
   const { 'home-page': homePage, menu } = modepharmData
   const { post_title: pageTitle, post_content: pageContent } = homePage
   const breadcrumbsItems = [{ label: 'Strona Główna' }]
-  const tiles = Object.values(menu).map((item) => ({ label: item.title, link: `/${item.full_slug}`, imageUrl: item.tile_img || undefined, color: item.tile_color }))
+  const tiles = Object.values(menu).map((item) => ({
+    label: item.title,
+    link: `/${item.full_slug}`,
+    imageUrl: item.tile_img || undefined,
+    color: item.tile_color
+  }))
 
   return (
     <div id="page-home">
