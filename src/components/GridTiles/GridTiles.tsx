@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
 import { Tile, TileProps } from './Tile'
+import { tilesColors } from '@/styles/tilesColors'
 
 interface GridTilesProps {
   tiles: TileProps[]
@@ -8,16 +9,16 @@ interface GridTilesProps {
 
 export const GridTiles = ({ tiles, size }: GridTilesProps) => {
   return (
-    <StyledSection>
-      {tiles.map((tile) => (
-        <Tile key={tile.label} color="red" {...tile} />
+    <StyledSection $size={size}>
+      {tiles.map((tile, index) => (
+        <Tile key={tile.label} size={size} {...tile} color={tilesColors[index]} />
       ))}
     </StyledSection>
   )
 }
 
-const StyledSection = styled.section`
+const StyledSection = styled.section<{ $size: GridTilesProps['size'] }>`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: ${(props) => (props.$size === 'big' ? 'space-between' : 'flex-start')};
 `

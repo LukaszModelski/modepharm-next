@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Menu } from '@/components/Menu/Menu'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
+import { GridTiles } from '@/components/GridTiles/GridTiles'
 
 interface CategoryPageProps {
   modepharmData: ModepharmType
@@ -27,6 +28,13 @@ export default function CategoryPage({ modepharmData }: CategoryPageProps) {
   const { post_title: categoryTitle, post_content: categoryContent } = categoryPage
   const breadcrumbsItems = [{ label: 'Strona Główna', link: '/' }, { label: categoryTitle }]
 
+  const tiles = Object.values(subMenu || {}).map((item) => ({
+    label: item.title,
+    link: `/${item.full_slug}`,
+    imageUrl: item.tile_img || undefined,
+    color: item.tile_color
+  }))
+
   return (
     <>
       <Head>
@@ -37,12 +45,7 @@ export default function CategoryPage({ modepharmData }: CategoryPageProps) {
       <h1>{categoryTitle}</h1>
       <Breadcrumbs items={breadcrumbsItems} />
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: categoryContent }}></div>
-      {subMenu &&
-        Object.values(subMenu).map((item) => (
-          <Link key={item.title} href={`/${item.full_slug}`}>
-            <h2>{item.title}</h2>
-          </Link>
-        ))}
+      <GridTiles tiles={tiles} size="small" />
     </>
   )
 }
