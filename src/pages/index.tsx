@@ -4,12 +4,15 @@ import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { Menu } from '@/components/Menu/Menu'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import { GridTiles } from '@/components/GridTiles/GridTiles'
+import { Dispatch, SetStateAction } from 'react'
 
 interface HomeProps {
   modepharmData: ModepharmType
+  isMenuOpen: boolean
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function Home({ modepharmData }: HomeProps) {
+export default function Home({ modepharmData, isMenuOpen, setIsMenuOpen }: HomeProps) {
   const { 'home-page': homePage, menu } = modepharmData
   const { post_title: pageTitle, post_content: pageContent } = homePage
   const breadcrumbsItems = [{ label: 'Strona Główna' }]
@@ -26,7 +29,7 @@ export default function Home({ modepharmData }: HomeProps) {
         <title>{pageTitle}</title>
         {pageContent && <meta name="description" content={stripHtmlfromTags(pageContent)}></meta>}
       </Head>
-      <Menu data={modepharmData.menu} />
+      <Menu data={modepharmData.menu} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <h1>{pageTitle}</h1>
       <Breadcrumbs items={breadcrumbsItems} />
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: pageContent }}></div>

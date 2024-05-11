@@ -4,12 +4,15 @@ import Head from 'next/head'
 import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { Menu } from '@/components/Menu/Menu'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
+import { Dispatch, SetStateAction } from 'react'
 
 interface PageProps {
   modepharmData: ModepharmType
+  isMenuOpen: boolean
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function Page({ modepharmData }: PageProps) {
+export default function Page({ modepharmData, isMenuOpen, setIsMenuOpen }: PageProps) {
   const { pages } = modepharmData
   const {
     query: { page: pageQuery }
@@ -38,7 +41,7 @@ export default function Page({ modepharmData }: PageProps) {
         <title>{pageTitle}</title>
         {pageContent && <meta name="description" content={stripHtmlfromTags(pageContent)}></meta>}
       </Head>
-      <Menu data={modepharmData.menu} />
+      <Menu data={modepharmData.menu} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <h1>{pageTitle}</h1>
       <Breadcrumbs items={breadcrumbsItems} />
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: pageContent }}></div>

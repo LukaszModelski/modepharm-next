@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
+import { zIndexes } from './zIndexes'
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle<{ isMenuOpen: boolean }>`
   //layout
   .container {
     margin: 0 auto;
@@ -35,7 +36,20 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
     width: 100%;
+    ${(props) => props.isMenuOpen && 'overflow-y: hidden;'}
 
+    &:after {
+      display: none;
+      content: '';
+      z-index: ${zIndexes.bodyAfter};
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255,255,255,0.7);
+      ${(props) => props.isMenuOpen && 'display: block;'}
+    }
   }
 
   h1 {

@@ -1,17 +1,19 @@
 import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Menu } from '@/components/Menu/Menu'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import { GridTiles } from '@/components/GridTiles/GridTiles'
+import { Dispatch, SetStateAction } from 'react'
 
 interface CategoryPageProps {
   modepharmData: ModepharmType
+  isMenuOpen: boolean
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function CategoryPage({ modepharmData }: CategoryPageProps) {
+export default function CategoryPage({ modepharmData, isMenuOpen, setIsMenuOpen }: CategoryPageProps) {
   const { pages, menu } = modepharmData
   const {
     query: { category }
@@ -41,7 +43,7 @@ export default function CategoryPage({ modepharmData }: CategoryPageProps) {
         <title>{categoryTitle}</title>
         {categoryContent && <meta name="description" content={stripHtmlfromTags(categoryContent)}></meta>}
       </Head>
-      <Menu data={modepharmData.menu} />
+      <Menu data={modepharmData.menu} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <h1>{categoryTitle}</h1>
       <Breadcrumbs items={breadcrumbsItems} />
       <div className="wyswyg-content" dangerouslySetInnerHTML={{ __html: categoryContent }}></div>

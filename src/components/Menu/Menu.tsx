@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { IconHamburger } from '../Icons/IconHamburger'
 import { IconClose } from '../Icons/IconClose'
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ModepharmType } from '@/helpers/zod'
@@ -9,19 +9,21 @@ import { zIndexes } from '@/styles/zIndexes'
 
 interface MenuProps {
   data: ModepharmType['menu']
+  isMenuOpen: boolean
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>
 }
 
-interface NavigationProps extends MenuProps {
+interface NavigationProps {
+  data: ModepharmType['menu']
   secondary?: boolean
 }
 
-export const Menu = ({ data }: MenuProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+export const Menu = ({ data, isMenuOpen, setIsMenuOpen }: MenuProps) => {
   const { asPath } = useRouter()
 
   // closing menu on route change
   useEffect(() => {
-    setIsOpen(false)
+    setIsMenuOpen(false)
   }, [asPath])
 
   const Navigation = ({ data, secondary }: NavigationProps) => {
@@ -42,11 +44,13 @@ export const Menu = ({ data }: MenuProps) => {
   }
 
   return (
-    <NavContainer $isopen={isOpen}>
-      <IconContainerDesktop onClick={() => setIsOpen((prev) => !prev)}>
-        {isOpen ? <IconCloseDesktop /> : <IconHamburger />}
+    <NavContainer $isopen={isMenuOpen}>
+      <IconContainerDesktop onClick={() => setIsMenuOpen((prev) => !prev)}>
+        {isMenuOpen ? <IconCloseDesktop /> : <IconHamburger />}
       </IconContainerDesktop>
-      <IconContainerMobile>{isOpen && <IconClosedMobile onClick={() => setIsOpen(false)} />}</IconContainerMobile>
+      <IconContainerMobile>
+        {isMenuOpen && <IconClosedMobile onClick={() => setIsMenuOpen(false)} />}
+      </IconContainerMobile>
       <Nav>
         <StyledNavLinkPrimary href={'/'} $noBorder={true}>
           Strona główna
