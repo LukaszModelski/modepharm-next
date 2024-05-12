@@ -7,6 +7,7 @@ const endpoints = {
 export const colors = {
   gray: '#363636',
   grayLight: '#585858',
+  grayHover: '#636363',
   white: '#fff',
   pink: '#f2849e',
   modepharm: '#007cb0'

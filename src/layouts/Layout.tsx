@@ -1,3 +1,4 @@
+import { CookiesBar } from '@/components/CookiesBar/CookiesBar'
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 import styled from 'styled-components'
@@ -9,6 +10,7 @@ export const Layout = ({ children, className }: { children: JSX.Element; classNa
         <Header />
         {children}
       </StyledContainer>
+      <CookiesBar />
       <Footer />
     </>
   )

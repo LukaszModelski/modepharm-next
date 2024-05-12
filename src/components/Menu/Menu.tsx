@@ -37,7 +37,7 @@ export const Menu = ({ data, isMenuOpen, setIsMenuOpen }: MenuProps) => {
           <LinkComponent key={item.title} href={item.full_slug} $lastItem={index === array.length - 1}>
             {item.title}
           </LinkComponent>
-          {hasChildLinks && <Navigation secondary={true} data={childPages!} />}
+          {hasChildLinks && <Navigation key={`secondary-${item.title}`} secondary={true} data={childPages!} />}
         </>
       )
     })
