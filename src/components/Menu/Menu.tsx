@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { IconHamburger } from '../Icons/IconHamburger'
 import { IconClose } from '../Icons/IconClose'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ModepharmType } from '@/helpers/zod'
@@ -33,12 +33,12 @@ export const Menu = ({ data, isMenuOpen, setIsMenuOpen }: MenuProps) => {
       const childPages = item['child-pages']
 
       return (
-        <>
-          <LinkComponent key={item.title} href={item.full_slug} $lastItem={index === array.length - 1}>
+        <React.Fragment key={item.title}>
+          <LinkComponent href={item.full_slug} $lastItem={index === array.length - 1}>
             {item.title}
           </LinkComponent>
-          {hasChildLinks && <Navigation key={`secondary-${item.title}`} secondary={true} data={childPages!} />}
-        </>
+          {hasChildLinks && <Navigation secondary={true} data={childPages!} />}
+        </React.Fragment>
       )
     })
   }
