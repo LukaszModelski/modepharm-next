@@ -28,7 +28,6 @@ export const GlobalStyles = createGlobalStyle<{ isMenuOpen: boolean }>`
 
   // typography
   body {
-    font-family: '__Source_Sans_3_eb3c34';
     box-sizing: border-box;
     font-weight: 300;
     position: absolute;

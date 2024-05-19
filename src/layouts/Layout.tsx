@@ -3,7 +3,7 @@ import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 import styled from 'styled-components'
 
-export const Layout = ({ children, className }: { children: JSX.Element; className: string }) => {
+export const Layout = ({ children }: { children: JSX.Element }) => {
   return (
     <>
       <StyledContainer>
