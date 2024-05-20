@@ -24,7 +24,8 @@ const menuSchema = z.record(
 
 const homePageSchema = z.object({
   ['post_title']: z.string(),
-  ['post_content']: z.string()
+  ['post_content']: z.string(),
+  ['meta_desc']: z.string()
 })
 
 const pageSchema = z.object({
@@ -36,7 +37,8 @@ const pageSchema = z.object({
   ['post_type']: z.string(),
   guid: z.string(),
   ['menu_order']: z.number(),
-  ['main_image']: z.union([z.string().nullish(), z.boolean()])
+  ['main_image']: z.union([z.string().nullish(), z.boolean()]),
+  ['meta_desc']: z.string()
 })
 
 const pagesSchema = z.record(pageSchema)

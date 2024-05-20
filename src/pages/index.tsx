@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { ModepharmType, validateResponseZod } from '@/helpers/zod'
-import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { Menu } from '@/components/Menu/Menu'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import { GridTiles } from '@/components/GridTiles/GridTiles'
@@ -14,7 +13,7 @@ interface HomeProps {
 
 export default function Home({ modepharmData, isMenuOpen, setIsMenuOpen }: HomeProps) {
   const { 'home-page': homePage, menu } = modepharmData
-  const { post_title: pageTitle, post_content: pageContent } = homePage
+  const { post_title: pageTitle, post_content: pageContent, meta_desc: metaDesc } = homePage
   const breadcrumbsItems = [{ label: 'Strona Główna' }]
   const tiles = Object.values(menu).map((item) => ({
     label: item.title,
@@ -27,7 +26,7 @@ export default function Home({ modepharmData, isMenuOpen, setIsMenuOpen }: HomeP
     <div id="page-home">
       <Head>
         <title>{pageTitle}</title>
-        {pageContent && <meta name="description" content={stripHtmlfromTags(pageContent)}></meta>}
+        <meta name="description" content={metaDesc}></meta>
       </Head>
       <Menu data={modepharmData.menu} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <h1>{pageTitle}</h1>

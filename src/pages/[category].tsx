@@ -1,4 +1,3 @@
-import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -27,7 +26,7 @@ export default function CategoryPage({ modepharmData, isMenuOpen, setIsMenuOpen 
     return <h1>Should be 404 page</h1>
   }
 
-  const { post_title: categoryTitle, post_content: categoryContent } = categoryPage
+  const { post_title: categoryTitle, post_content: categoryContent, meta_desc: metaDesc } = categoryPage
   const breadcrumbsItems = [{ label: 'Strona Główna', link: '/' }, { label: categoryTitle }]
 
   const tiles = Object.values(subMenu || {}).map((item) => ({
@@ -41,7 +40,7 @@ export default function CategoryPage({ modepharmData, isMenuOpen, setIsMenuOpen 
     <>
       <Head>
         <title>{categoryTitle}</title>
-        {categoryContent && <meta name="description" content={stripHtmlfromTags(categoryContent)}></meta>}
+        <meta name="description" content={metaDesc}></meta>
       </Head>
       <Menu data={modepharmData.menu} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <h1>{categoryTitle}</h1>

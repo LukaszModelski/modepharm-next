@@ -1,7 +1,6 @@
 import { ModepharmType, validateResponseZod } from '@/helpers/zod'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { stripHtmlfromTags } from '@/helpers/stripHtml'
 import { Menu } from '@/components/Menu/Menu'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import { Dispatch, SetStateAction } from 'react'
@@ -28,7 +27,7 @@ export default function Page({ modepharmData, isMenuOpen, setIsMenuOpen }: PageP
 
   const categoryPath = pageQuery[0]
   const { post_title: categoryTitle } = pages[categoryPath]
-  const { post_title: pageTitle, post_content: pageContent } = page
+  const { post_title: pageTitle, post_content: pageContent, meta_desc: metaDesc } = page
   const breadcrumbsItems = [
     { label: 'Strona Główna', link: '/' },
     { label: categoryTitle, link: `/${categoryPath}` },
@@ -39,7 +38,7 @@ export default function Page({ modepharmData, isMenuOpen, setIsMenuOpen }: PageP
     <>
       <Head>
         <title>{pageTitle}</title>
-        {pageContent && <meta name="description" content={stripHtmlfromTags(pageContent)}></meta>}
+        <meta name="description" content={metaDesc}></meta>
       </Head>
       <Menu data={modepharmData.menu} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <h1>{pageTitle}</h1>
