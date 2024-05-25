@@ -65,8 +65,8 @@ const NavContainer = styled.div<{ $isopen: boolean }>`
   position: fixed;
   z-index: ${zIndexes.menu};
   top: 0;
-  right: ${(props) => (props.$isopen ? '0' : '-300')}px;
-  width: 300px;
+  right: ${(props) => (props.$isopen ? '0' : '-350')}px;
+  width: 350px;
   max-width: 100%;
   transition: right 0.3s ease-in;
 
