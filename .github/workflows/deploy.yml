@@ -2,7 +2,7 @@ name: deploy-dev
 on:
   workflow_dispatch:
     inputs:
-      environment:
+      deploy-environment:
         description: 'Choose an environment to deploy to'
         required: true
         type: choice
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: echo ${{ env.inputs.environment }}
+        run: echo ${{ env.inputs.deploy-environment }}
       # - name: Get code
       #   uses: actions/checkout@v4
       # - name: Install node 20
