@@ -1,5 +1,18 @@
 name: deploy-dev
 on: workflow_dispatch
+  inputs:
+    environment:
+      description: 'Choose an environment to deploy to'
+      required: true
+      type: choice
+      options:
+        - develop
+        - production
+
+env:
+  - develop: 'public_html/dev'
+  - production: 'public_html'
+
 jobs:
   job-deploy:
     runs-on: ubuntu-latest
@@ -14,11 +27,13 @@ jobs:
         run: npm ci
       - name: Create build
         run: npm run build
-      - name: Sync files
-        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
-        with:
-          ftp_host: ${{ secrets.FTP_SERVER }}
-          ftp_username: ${{ secrets.FTP_USER }}
-          ftp_password: ${{ secrets.FTP_PASSWORD }}
-          local_source_dir: 'out'
-          dist_target_dir: 'public_html/dev'
+      - name: test
+        run: echo ${{ env.inputs.environment }}
+      # - name: Sync files
+      #   uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+      #   with:
+      #     ftp_host: ${{ secrets.FTP_SERVER }}
+      #     ftp_username: ${{ secrets.FTP_USER }}
+      #     ftp_password: ${{ secrets.FTP_PASSWORD }}
+      #     local_source_dir: 'out'
+      #     dist_target_dir: 'public_html/dev'
