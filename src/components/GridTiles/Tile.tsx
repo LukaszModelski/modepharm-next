@@ -69,11 +69,27 @@ const TileContainer = styled.div<{ $bgi?: TileProps['imageUrl']; $size: TileProp
   background-repeat: no-repeat;
   transition: transform 0.5s ease;
 
+  &:hover {
+    transform: scale(1.02);
+
+    ${TileColor} {
+      opacity: 0;
+    }
+
+    ${TileHeading} {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
   // size big
   ${(props) =>
     props.theme.minTablet(`
       width: 324px;
       height: 300px;
+
+      &:hover {
+        transform: scale(1.1);
+      }
   `)}
 
   ${(props) =>
@@ -87,18 +103,6 @@ const TileContainer = styled.div<{ $bgi?: TileProps['imageUrl']; $size: TileProp
       width: 410px;
       height: 380px;
   `)}
-
-  &:hover {
-    transform: scale(1.1);
-
-    ${TileColor} {
-      opacity: 0;
-    }
-
-    ${TileHeading} {
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-  }
 
   // size small
   ${(props) =>

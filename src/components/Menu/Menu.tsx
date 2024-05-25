@@ -79,6 +79,7 @@ const NavContainer = styled.div<{ $isopen: boolean }>`
 
 const Nav = styled.nav`
   height: 100vh;
+  height: 100dvh;
   max-width: 100%;
   background-color: ${(props) => props.theme.colors.gray};
   padding: 15px 30px;
