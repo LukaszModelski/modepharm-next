@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: echo ${{ env.inputs.deploy-environment }}
+        run: echo ${{ env[inputs.deploy-environment] }}
       # - name: Get code
       #   uses: actions/checkout@v4
       # - name: Install node 20
