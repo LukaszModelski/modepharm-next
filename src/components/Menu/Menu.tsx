@@ -145,6 +145,7 @@ const IconContainerMobile = styled(IconContainerDesktop)`
   left: unset;
   right: 8px;
   width: 22px;
+  z-index: ${zIndexes.closeIcon};
 `
 
 const IconClosedMobile = styled(IconClose)`
