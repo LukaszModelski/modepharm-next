@@ -1,4 +1,4 @@
-name: deploy-test
+name: deploy-dev
 on: workflow_dispatch
 jobs:
   job-deploy:
@@ -21,4 +21,4 @@ jobs:
           ftp_username: ${{ secrets.FTP_USER }}
           ftp_password: ${{ secrets.FTP_PASSWORD }}
           local_source_dir: 'out'
-          dist_target_dir: 'public_html'
+          dist_target_dir: 'public_html/dev'
