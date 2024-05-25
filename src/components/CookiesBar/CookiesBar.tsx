@@ -28,7 +28,7 @@ export const CookiesBar = () => {
       <AcceptButton
         onClick={() => {
           setShowCookieBar(false)
-          Cookies.set(cookiesAcceptedName, 'whatever')
+          Cookies.set(cookiesAcceptedName, 'whatever', { expires: 100 })
         }}
       >
         Akceptuję
