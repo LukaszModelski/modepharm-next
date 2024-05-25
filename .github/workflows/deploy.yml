@@ -11,8 +11,8 @@ on:
           - production
 
 env:
-  - develop: 'public_html/dev'
-  - production: 'public_html'
+  develop: 'public_html/dev'
+  production: 'public_html'
 
 jobs:
   job-deploy:
