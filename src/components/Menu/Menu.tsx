@@ -24,7 +24,7 @@ export const Menu = ({ data, isMenuOpen, setIsMenuOpen }: MenuProps) => {
   // closing menu on route change
   useEffect(() => {
     setIsMenuOpen(false)
-  }, [asPath])
+  }, [asPath, setIsMenuOpen])
 
   const Navigation = ({ data, secondary }: NavigationProps) => {
     return Object.values(data).map((item, index, array) => {
