@@ -1,13 +1,14 @@
 name: deploy-dev
-on: workflow_dispatch
-  inputs:
-    environment:
-      description: 'Choose an environment to deploy to'
-      required: true
-      type: choice
-      options:
-        - develop
-        - production
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose an environment to deploy to'
+        required: true
+        type: choice
+        options:
+          - develop
+          - production
 
 env:
   - develop: 'public_html/dev'
@@ -17,18 +18,18 @@ jobs:
   job-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Get code
-        uses: actions/checkout@v4
-      - name: Install node 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install dependencies
-        run: npm ci
-      - name: Create build
-        run: npm run build
       - name: test
         run: echo ${{ env.inputs.environment }}
+      # - name: Get code
+      #   uses: actions/checkout@v4
+      # - name: Install node 20
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
+      # - name: Install dependencies
+      #   run: npm ci
+      # - name: Create build
+      #   run: npm run build
       # - name: Sync files
       #   uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       #   with:
