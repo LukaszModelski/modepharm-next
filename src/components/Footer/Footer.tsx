@@ -5,7 +5,7 @@ export const Footer = () => (
     <div className="container">
       <div className="contact-form">
         <h2>Wyślij zapytanie</h2>
-        <iframe src="https://modepharm.pl/contact-form/form.php"></iframe>
+        <iframe src="https://www.modepharm.pl/contact-form/form.php"></iframe>
       </div>
       <div className="contact-details">
         <h2>Dane kontaktowe</h2>
@@ -15,7 +15,7 @@ export const Footer = () => (
         <p>email: biuro@modepharm.pl</p>
         <p>NIP: 7811215436</p>
         <br />
-        <a href="https://modepharm.pl/Polityka-prywatności-MODEPHARM-Jacek-Modelski.pdf" target="_blank">
+        <a href="https://www.modepharm.pl/Polityka-prywatności-MODEPHARM-Jacek-Modelski.pdf" target="_blank">
           <p>
             <b>Polityka prywatności</b>
           </p>
