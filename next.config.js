@@ -4,6 +4,7 @@ const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
+  skipTrailingSlashRedirect: true,
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true
