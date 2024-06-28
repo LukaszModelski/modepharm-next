@@ -57,7 +57,6 @@ export const getStaticPaths = async () => {
       { params: { page: ['oferta-dla-hurtowni', 'analiza-ryzyka-procesow-magazynowych'] } },
       { params: { page: ['oferta-dla-hurtowni', 'kwalifikacja-pomieszczen-magazynowych'] } },
       { params: { page: ['oferta-dla-hurtowni', 'mapowanie-rozkladu-temperatury'] } },
-      { params: { page: ['oferta-dla-hurtowni', 'walidacja-systemow-monitorowania-parametrow-klimatycznych'] } },
       { params: { page: ['oferta-dla-hurtowni', 'walidacja-systemow-skomputeryzowanych-zarzadzania-hurtownia'] } },
       { params: { page: ['programy-oszczednosciowe', 'audyt-pracy-systemu-pary-wodnej'] } },
       { params: { page: ['programy-oszczednosciowe', 'audyt-pracy-systemu-sprezonego-powietrza'] } },
